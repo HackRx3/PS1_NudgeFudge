@@ -1,12 +1,12 @@
 const Header = () => {
     return (
-      <header className="header">
+      <div className="loginForm">
         <h2
         
         >
-          Admin Panel
+          Login Portal
         </h2 >
-        <br></br>
+        <br></br>        
         {/* add email id and password */}
         <h4>
           Email ID: <input />{' '}
@@ -25,7 +25,7 @@ const Header = () => {
           New? Sign Up here
         </button>{' '}
         <br></br>
-      </header>
+      </div>
     )
   }
   
