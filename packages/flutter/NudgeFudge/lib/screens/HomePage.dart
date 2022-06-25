@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:html';
+import 'dart:html' as html;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,7 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _url = 'https://www.wikipedia.org/';
+ String _url = 'https://192.168.110.113:3000/dashboard';
+
   WebViewController? _webViewController;
 
   @override
@@ -35,6 +36,7 @@ class _HomePageState extends State<HomePage> {
           onPageFinished: (String url) {
             print('Page finished loading: $url');
           },
+
         ));
   }
 }
