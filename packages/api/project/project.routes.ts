@@ -16,8 +16,15 @@ const handlePostProject = async (
   try {
     const { name, platform } = req.body as PostCampaignType;
     const { authorization } = req.headers;
-    await addProject({ name, platform }, authorization as string);
-    res.json({ success: true, message: "project added successfully" });
+    const app_id = await addProject(
+      { name, platform },
+      authorization as string
+    );
+    res.json({
+      success: true,
+      message: "project added successfully",
+      data: { app_id },
+    });
   } catch (err) {
     next(err);
   }
