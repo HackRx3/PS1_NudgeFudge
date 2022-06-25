@@ -16,11 +16,13 @@ const Header = () => {
           Password:{" "}
           <input style={{ padding: 10, margin: 5, borderRadius: 10 }} />
         </h4>
-        <button className="btn" id="rewards_logo">
-          Log Innn
-        </button>
-        <br></br>
-        <button className="btn">New? Sign Up here</button> <br></br>
+        <div>
+          <button className="btn" id="rewards_logo">
+            Log In
+          </button>
+          <br></br>
+          <button className="btn">New? Sign Up here</button> <br></br>
+        </div>
       </div>
     </div>
   );
