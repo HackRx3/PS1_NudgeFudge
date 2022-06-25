@@ -6,6 +6,7 @@ import { join } from "path";
 import { errorHandler } from "./error/error.handler";
 import { DatabaseService } from "./services/database.service";
 import nudgeRouter from "./nudge/nudge.routes";
+import projectRouter from "./project/project.routes";
 
 dotenvConfig();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/v1/nudge", nudgeRouter);
+app.use("/api/v1/project", projectRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(join(__dirname, "..", "client", "out")));
