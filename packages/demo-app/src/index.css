@@ -6,18 +6,34 @@
   padding: 0;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-}
 
+.card {
+  background: #fbfbfb;
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+  height: 410px;
+  margin: 6rem auto 8.1rem auto;
+  width: 329px;
+  padding: 20px;
+}
 .Container {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  align-items: center;
+}
+
+.Jugaad {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+  border-radius: 5px;
+  align-items: center;
 }
 
 .header {
@@ -27,10 +43,16 @@ body {
   margin-bottom: 20px;
 }
 
+input{
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
 .btn {
   display: inline-block;
   background: #000;
-  color: #fff;
+  color: rgb(255, 255, 255);
   border: none;
   padding: 10px 20px;
   margin: 5px;
