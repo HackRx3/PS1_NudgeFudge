@@ -50,18 +50,18 @@ export const PushToQueue = (message: string) => {
   );
 };
 
-export const ReceiveFromQueue = () => {
-  rsmq.popMessage({ qname: process.env.QUEUE_NAME! }, function (err, resp) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    // @ts-ignore
-    if (resp.id) {
-      console.log("Message received and deleted from queue", resp);
-    } else {
-      console.log("No messages for me...");
-    }
+export const PopFromQueue = async () =>
+  new Promise((resolve, reject) => {
+    rsmq.popMessage({ qname: process.env.QUEUE_NAME! }, function (err, resp) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      // @ts-ignore
+      if (resp.id) {
+        resolve(resp);
+      } else {
+        reject();
+      }
+    });
   });
-};

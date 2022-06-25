@@ -5,13 +5,16 @@ import { join } from "path";
 
 import { errorHandler } from "./error/error.handler";
 import { DatabaseService } from "./services/database.service";
+import { QueueService } from "./services/queue.service";
 import nudgeRouter from "./nudge/nudge.routes";
 import projectRouter from "./project/project.routes";
 import adminRoutes from "./admin/admin.routes";
+import dummyRoutes from "./dummy-be/dummy-be.routes";
 
 dotenvConfig();
 
 const app: Express = express();
+QueueService();
 
 app.use(express.json());
 app.use(cors());
@@ -19,6 +22,7 @@ app.use(cors());
 app.use("/api/v1/nudge", nudgeRouter);
 app.use("/api/v1/project", projectRouter);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/dummy", dummyRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(join(__dirname, "..", "client", "out")));
