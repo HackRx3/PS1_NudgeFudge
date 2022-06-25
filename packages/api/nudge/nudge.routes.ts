@@ -13,8 +13,8 @@ const handlePostNudge = async (
   next: NextFunction
 ) => {
   try {
-    const { event_label, nudge_label } = req.body as PostNudgeType;
-    await addNudge({ event_label, nudge_label });
+    const { event_label, nudge } = req.body as PostNudgeType;
+    await addNudge({ event_label, nudge });
     res.json({ success: true, message: "nudge added successfully" });
   } catch (err) {
     next(err);

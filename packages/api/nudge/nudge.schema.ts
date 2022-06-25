@@ -1,38 +1,50 @@
 import * as yup from "yup";
 
-const NudgeConfigXPosition = ["left", "right", "middle"];
+const TypesOfNudges = ["dot", "overlay"];
 
-const NudgeConfigYPosition = ["top", "bottom", "center"];
-
-export const dotNudgeSchema = yup.object({
-  color: yup.string().trim().default("#0067b500"),
-  x_position: yup.string().trim().oneOf(NudgeConfigXPosition),
-  y_position: yup.string().trim().oneOf(NudgeConfigYPosition),
-});
-// .noUnknown(true);
-
-export const overlayNudgeSchema = yup.object({
-  children: yup.string().trim(),
-  border_color: yup.string().trim(),
-});
-// .noUnknown(true);
-
-export const alertNudgeSchema = yup.object({
-  background_color: yup.string().trim(),
-});
-// .noUnknown(true);
-
-export const NudgesSchemas = [
-  dotNudgeSchema,
-  overlayNudgeSchema,
-  alertNudgeSchema,
+const NudgePosition = [
+  "top-left",
+  "top-middle",
+  "top-right",
+  "middle-left",
+  "middle-middle",
+  "middle-right",
+  "bottom-left",
+  "bottom-middle",
+  "bottom-right",
 ];
+
+export const dotNudgeSchema = yup
+  .object({
+    elementId: yup.string().trim().required(),
+    backgroundColor: yup.string().trim().default("#0067b5"),
+    position: yup.string().trim().oneOf(NudgePosition).default("top-right"),
+    size: yup.string().trim().default("12px"),
+  })
+  .noUnknown(true)
+  .required();
+
+export const overlayNudgeSchema = yup
+  .object({
+    children: yup.string().trim(),
+    border_color: yup.string().trim(),
+  })
+  .noUnknown(true)
+  .required();
+
+export const NudgesSchemas = [dotNudgeSchema, overlayNudgeSchema];
 
 export const postNudgeSchema = yup
   .object({
     event_label: yup.string().trim().required(),
-    nudge_label: yup.string().trim().required(),
-    // nudge: yup.mixed().oneOf(NudgesSchemas).required(),
+    nudge: yup
+      .object({
+        label: yup.string().trim().required(),
+        type: yup.string().trim().oneOf(TypesOfNudges).required(),
+        config: yup.mixed().oneOf(NudgesSchemas).required(),
+      })
+      .noUnknown(true)
+      .required(),
   })
   .noUnknown(true)
   .required();
