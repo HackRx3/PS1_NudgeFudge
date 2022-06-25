@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 const Header = () => {
   return (
     <div className="loginForm">
-      <h2>Login Portal</h2>
+      <h2 className="header">Login Portal</h2>
       <br></br>
       {/* add email id and password */}
       <h4>
@@ -13,7 +13,8 @@ const Header = () => {
         Password: <input />
       </h4>
       <button className="btn">Log In</button>
-      <button>New? Sign Up here</button> <br></br>
+      <br></br>
+      <button className="btn">New? Sign Up here</button> <br></br>
     </div>
   );
 };
