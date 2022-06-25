@@ -9,3 +9,8 @@ export const addNudge = async (data: PostNudgeType): Promise<boolean> => {
   await db.insertOne(data);
   return true;
 };
+
+export const getNudges = async (app_id: string): Promise<any> => {
+  const db = await DatabaseService.getInstance().getDb("nudges");
+  return await db.find({ app_id }).toArray();
+};
