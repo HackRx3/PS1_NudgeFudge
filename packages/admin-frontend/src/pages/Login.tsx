@@ -1,24 +1,24 @@
-import { Form, Formik, FormikHandlers } from "formik";
+import { Form, Formik } from "formik";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Input } from "../components/shared";
 
-interface AuthProps {
-  isLogin?: boolean;
-}
+const initialValues = {
+  username: "",
+  password: "",
+};
 
-const AuthPage = ({ isLogin = false }: AuthProps) => {
+const AuthPage = () => {
   const [loading, setLoading] = useState(false);
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+
+  const location = useLocation();
+  let navigate = useNavigate();
+
+  let from = (location.state as any)?.from?.pathname || "/";
 
   const loginValidationSchema = Yup.object().shape({
-    email: Yup.string()
-      .trim()
-      .email("Invalid email address")
-      .required("Required"),
+    username: Yup.string().trim().required("Required"),
     password: Yup.string()
       .min(8, "Password should be atleast 8 characters long")
       .required("Required"),
@@ -47,6 +47,7 @@ const AuthPage = ({ isLogin = false }: AuthProps) => {
               //   draggable: true,
               //   progress: undefined,
               // });
+              navigate(from, { replace: true });
             } catch (err) {
               // console.log(err);
               // Toast(false, "Uh oh! We are facing some issues. Please again later!");
@@ -61,12 +62,12 @@ const AuthPage = ({ isLogin = false }: AuthProps) => {
 
               <div className="self-stretch mb-2">
                 <Input
-                  {...getFieldProps("email")}
+                  {...getFieldProps("username")}
                   type="text"
-                  placeholder="Enter email"
+                  placeholder="Enter username"
                 />
                 <div className="text-red-500 text-xs font-semibold mt-1">
-                  {touched.email && errors.email}
+                  {touched.username && errors.username}
                 </div>
               </div>
               <div className="self-stretch mb-4">
@@ -81,7 +82,7 @@ const AuthPage = ({ isLogin = false }: AuthProps) => {
               </div>
 
               <button
-                className="bg-primary-300 px-6 py-2 text-white font-semibold rounded mt-2"
+                className="bg-primary-300 filter transition-all hover:brightness-110 active:brightness-95 px-6 py-2 text-white font-semibold rounded mt-2"
                 type="submit"
                 disabled={loading}
               >
