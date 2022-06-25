@@ -1,7 +1,7 @@
 // @ts-nocheck
 const app_id = document.currentScript?.getAttribute("data-app-id");
 
-const API_BASE_URL = "http://localhost:8000/api/v1";
+const API_BASE_URL = "https://nudgelab.jagnani73.com/api/v1";
 
 const RenderNudge = (type, config) => {
   switch (type) {
@@ -113,7 +113,7 @@ const RenderNudge = (type, config) => {
 
 const getTriggerNudges = async () => {
   let { success, data: nudges } = await (
-    await fetch(`${API_BASE_URL}/nudge/trigger/B`)
+    await fetch(`${API_BASE_URL}/nudge/trigger/${app_id}`)
   ).json();
 
   nudges.forEach(({ nudge: { type, config } }) => RenderNudge(type, config));

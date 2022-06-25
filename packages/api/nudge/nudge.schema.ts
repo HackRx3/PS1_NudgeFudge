@@ -43,8 +43,6 @@ export const overlayNudgeSchema = yup
   .noUnknown(true)
   .required();
 
-export const NudgesSchemas = [dotNudgeSchema, overlayNudgeSchema];
-
 export const postNudgeSchema = yup
   .object({
     app_id: yup.string().trim().required(),
@@ -53,7 +51,18 @@ export const postNudgeSchema = yup
       .object({
         label: yup.string().trim().required(),
         type: yup.string().trim().oneOf(TypesOfNudges).required(),
-        config: yup.mixed().oneOf(NudgesSchemas).required(),
+        config: yup
+          .object()
+          .when("type", {
+            is: "dot",
+            then: dotNudgeSchema,
+          })
+          .when("type", {
+            is: "overlay",
+            then: overlayNudgeSchema,
+          })
+          .required()
+          .noUnknown(true),
       })
       .noUnknown(true)
       .required(),
