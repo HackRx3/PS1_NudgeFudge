@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String localUrl = 'http://localhost:3000/dashboard';
+  String localUrl = 'http://192.168.188.84:3000';
   String wikiUrl='https://www.wikipedia.org/';
   String _url= 'http://localhost:3000/dashboard';
 
