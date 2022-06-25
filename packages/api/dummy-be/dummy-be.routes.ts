@@ -1,12 +1,8 @@
-import { config as dotenvConfig } from "dotenv";
-
 import {
   PushToQueue,
   QueueService,
   ReceiveFromQueue,
-} from "./services/queue.service";
-
-dotenvConfig();
+} from "../services/queue.service";
 
 QueueService();
 // PushToQueue("hli");
