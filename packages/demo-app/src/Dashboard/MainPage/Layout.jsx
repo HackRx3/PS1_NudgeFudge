@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../MainPage/main.css';
+import Axios from 'axios';
+import * as ReactBootStrap from 'react-bootstrap';
 
 function Layout() {
+    let isLoading = useState(false);
 
     var progress1={
         width: '40%',height: '35px'
@@ -83,21 +86,40 @@ function Feed({index, data}){
 function isOdd(num) { return num % 2 === 1; }
 
 function ItemCon({ classname, value}){
+
     var bgcolor={
-        'backgroundColor': `${ value.color}`
+        'backgroundColor': `${ value.color}`,
+        'border-radius': 10,
     }
+    let isLoading=useState(false);
+
+    const jaggiKiAPI= async ()=>{
+        // try{
+        //     let res = await axios.get('URL');
+
+        // }catch(err){
+        //     console.log(err);
+        // }
+        
+        let result = await new Promise(resolve => setTimeout(()=>{
+            console.log("Hello world");
+        },2000));
+        
+
+    }
+
     return (
     
-        <div className={`item-container p-2 `} style={bgcolor}>
+        <button onClick={jaggiKiAPI} className={`item-container p-2 `} style={bgcolor}>
                 <div className='item-row'>
                 <i className={`${value.icon} iconSize`} aria-hidden="true" />
                     <div>{value.value}</div>
 
                 </div>
-                <p>Messages</p>
+                <p>{value.subtitle}</p>
 
 
-            </div>
+            </button>
         
     );
 }
