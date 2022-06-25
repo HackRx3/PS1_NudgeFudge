@@ -9,14 +9,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //String _url = 'http://localhost:3000/dashboard';
-  String _url='https://www.wikipedia.org/';
+  String localUrl = 'http://localhost:3000/dashboard';
+  String wikiUrl='https://www.wikipedia.org/';
+  String _url= 'http://localhost:3000/dashboard';
 
   WebViewController? _webViewController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        setState(() {
+          _url = (_url == localUrl)? wikiUrl:localUrl;
+          _webViewController!.loadUrl(_url);
+          print("Loaded URL: $_url");
+        });
+      }, child: Icon(Icons.refresh,size: 30,),),
         body: WebView(
       initialUrl: _url,
       javascriptMode: JavascriptMode.unrestricted,
