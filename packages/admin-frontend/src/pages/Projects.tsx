@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 import { addProject } from "../store/projects.slice";
 import useProjects from "../hooks/useProjects";
 
+import { ReactComponent as EmptyProject } from "../assets/svg/empty-projects.svg";
+
 const initialValues = {
   name: "",
   platform: "javascript",
@@ -54,23 +56,43 @@ const Projects = () => {
           Signout
         </button>
       </header>
-      <section className="flex-1 bg-offWhite py-6 px-4">
-        <div className="flex items-start gap-5 max-w-5xl mx-auto">
-          {projects.map((proj) => (
-            <Link
-              to={proj.app_id}
-              key={proj.app_id}
-              className="block border border-slate-300 shadow-md transition-shadow hover:shadow-lg p-6 bg-gradient-to-br from-slate-100 to-slate-300 rounded-md w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+      <section className="flex-1 bg-offWhite py-6 flex flex-col px-4">
+        {projects.length > 0 ? (
+          <div className="w-full flex items-start flex-wrap max-w-5xl mx-auto">
+            {projects.map((proj) => (
+              <div
+                className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+                key={proj.app_id}
+              >
+                <Link
+                  to={proj.app_id}
+                  className="block border border-slate-300 shadow-md transition-shadow hover:shadow-lg p-6 bg-gradient-to-br from-slate-100 to-slate-300 rounded-md"
+                >
+                  <div className="text-">{proj.name}</div>
+                  <SiJavascript
+                    size={24}
+                    className="block mt-6 ml-auto bg-black"
+                    style={{ color: "#efd81d" }}
+                  />
+                </Link>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex-1 flex flex-col justify-center items-center">
+            <EmptyProject className="w-1/2 max-w-xs h-auto" />
+            <h3 className="text-lg font-semibold mt-6 text-center text-slate-400">
+              No Projects found. Start by creating one.
+            </h3>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="mt-4 bg-primary-300 filter transition-all hover:brightness-110 active:brightness-95 px-6 py-2 text-white font-semibold rounded flex items-center gap-2"
             >
-              <div className="text-">{proj.name}</div>
-              <SiJavascript
-                size={24}
-                className="block mt-6 ml-auto bg-black"
-                style={{ color: "#efd81d" }}
-              />
-            </Link>
-          ))}
-        </div>
+              <BsPlusLg size={14} />
+              Create new
+            </button>
+          </div>
+        )}
       </section>
 
       <CSSTransition

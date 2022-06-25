@@ -14,7 +14,9 @@ const useProjects = () => {
   useEffect(() => {
     if (!auth.isLoggedIn) return;
     fetchAllProjects(auth.user?.token!).then((res) => {
-      dispatch(setProjects(res.data));
+      if (res.data && Array.isArray(res.data)) {
+        dispatch(setProjects(res.data));
+      }
     });
   }, []);
 
