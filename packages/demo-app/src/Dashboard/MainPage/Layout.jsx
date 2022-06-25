@@ -1,6 +1,5 @@
-import React from 'react'
-
-import './main.css';
+import React from 'react';
+import '../MainPage/main.css';
 
 function Layout() {
 
@@ -18,7 +17,7 @@ function Layout() {
 
             <span><i className="fa fa-compass iconSize" aria-hidden="true" />
             
-                <span className='titleSize'>Dashboard</span>
+                <span className='titleSize'>   My Dashboard</span>
             </span>
 
            <div className='container'>

@@ -1,134 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-
-* {
-  box-sizing: border-box;
+body {
   margin: 0;
-  padding: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+      font-family: Nunito,sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
 }
 
-.card {
-  background: #fbfbfb;
-  border-radius: 8px;
-  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-  height: 410px;
-  margin: 6rem auto 8.1rem auto;
-  width: 329px;
-  padding: 20px;
-}
-.Container {
-  max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  padding: 30px;
-  border-radius: 5px;
-  align-items: center;
-}
-
-.Jugaad {
-  max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  padding: 30px;
-  border-radius: 5px;
-  align-items: center;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-input {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 10px;
-}
-
-.btn {
-  display: inline-block;
-  background: #000;
-  color: rgb(255, 255, 255);
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-  transition: all 0.2s ease-in-out;
-}
-.btn:hover {
-  background-color: rgb(32, 183, 72);
-  color: #fff;
-  padding: 10px 30px;
-}
-.btn:focus {
-  outline: none;
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
-.task {
-  background: #f4f4f4;
-  margin: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.task.reminder {
-  border-left: 5px solid green;
-}
-
-.task h3 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.add-form {
-  margin-bottom: 40px;
-}
-
-.form-control {
-  margin: 20px 0;
-}
-
-.form-control label {
-  display: block;
-}
-
-.form-control input {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
-.form-control-check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-control-check label {
-  flex: 1;
-}
-
-.form-control-check input {
-  flex: 2;
-  height: 20px;
-}
-
-footer {
-  margin-top: 30px;
-  text-align: center;
+code {
+  font-family: Nunito, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }

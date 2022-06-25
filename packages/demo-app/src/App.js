@@ -1,29 +1,18 @@
-import React from "react";
-import SideBar from './Components/SideBar';
-import AppBar from './Components/appBar';
-import Layout from './Components/layout';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Login from "./Components/Login";
-import Signup from "./Components/Signup";
-import Dashboard from "./Components/Dashboard";
+import React from 'react';
+import './App.css';
+import SideBar from './Dashboard/SideBar/sideContainer';
+import Layout from './Dashboard/MainPage/Layout';
+import AppBar from './Dashboard/appBar';
 
 function App() {
-  return (
-    <div className="App container"><AppBar />
+	return (
+		<div className="App  container">
+			<AppBar />
 
-    <SideBar />
-    <Router>
-      <Routes>
-        <Route path="/" element={<div>Home</div>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
-    </div>
-    
-  );
+			<SideBar />
+			<Layout />
+		</div>
+	);
 }
 
 export default App;
