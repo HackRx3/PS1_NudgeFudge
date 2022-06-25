@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { createProject, fetchAllProjects } from "../services/api";
 import useAuth from "../hooks/useAuth";
 
+import { SiJavascript } from "react-icons/si";
+
 const initialValues = {
   name: "",
   platform: "javascript",
@@ -38,7 +40,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <main className="flex-1">
+    <main className="flex-1 flex flex-col">
       <header className="bg-primary-500 flex items-center py-3 px-4 text-white">
         <h1 className="text-xl font-semibold mr-auto">Projects</h1>
         <button
@@ -57,15 +59,24 @@ const Projects = () => {
           Signout
         </button>
       </header>
-      <section>
-        {projects.map(
-          (proj: { name: string; platform: string; app_id: string }) => (
-            <article key={proj.app_id}>
-              <div>{proj.name}</div>
-              <div>{proj.platform}</div>
-            </article>
-          )
-        )}
+      <section className="flex-1 bg-offWhite py-6 px-4">
+        <div className="flex items-start gap-5 max-w-5xl mx-auto">
+          {projects.map(
+            (proj: { name: string; platform: string; app_id: string }) => (
+              <article
+                key={proj.app_id}
+                className="p-6 bg-gradient-to-br from-slate-100 to-slate-300 rounded-md w-1/2  md:w-1/3 lg:w-1/4 "
+              >
+                <div className="text-">{proj.name}</div>
+                <SiJavascript
+                  size={24}
+                  className="block mt-6 ml-auto bg-black"
+                  style={{ color: "#efd81d" }}
+                />
+              </article>
+            )
+          )}
+        </div>
       </section>
 
       <CSSTransition
