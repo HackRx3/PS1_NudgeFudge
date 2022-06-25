@@ -47,7 +47,8 @@ export const NudgesSchemas = [dotNudgeSchema, overlayNudgeSchema];
 
 export const postNudgeSchema = yup
   .object({
-    event_label: yup.string().trim().required(),
+    app_id: yup.string().trim().required(),
+    event_label: yup.string().trim(),
     nudge: yup
       .object({
         label: yup.string().trim().required(),
