@@ -4,6 +4,7 @@ import { join } from "path";
 import { postNudgeSchema, PostNudgeType } from "./nudge.schema";
 import { addNudge } from "./nudge.service";
 import { validateQuery } from "../middlewares/validate-query";
+import { validateJwt } from "../middlewares/validate-jwt";
 
 const router = Router();
 
@@ -33,7 +34,12 @@ const handleGetCampaign = async (
   }
 };
 
-router.post("/create", validateQuery("body", postNudgeSchema), handlePostNudge);
+router.post(
+  "/create",
+  validateJwt(),
+  validateQuery("body", postNudgeSchema),
+  handlePostNudge
+);
 router.get("/campaign.js", handleGetCampaign);
 
 export default router;
