@@ -18,6 +18,26 @@ const nudges = [
       },
     },
   },
+  {
+    event_label: "success",
+    nudge: {
+      label: "blue_modal",
+      type: "overlay",
+      config: {
+        text: "Anim aliqua dolore ut labore sint.",
+        textAlign: "center",
+        backdropColor: "red",
+        backgroundColor: "green",
+        color: "pink",
+        fontSize: "20px",
+        borderColor: "yellow",
+        borderWidth: "20px",
+        borderRadius: "8rem",
+        width: "70%",
+        height: "20%",
+      },
+    },
+  },
 ];
 
 //? INFO: loop through the nudges to set them up
@@ -80,18 +100,44 @@ nudges.forEach(({ nudge: { type, config } }) => {
       break;
     }
 
-    // case "overlay": {
-    //   const backdrop = document.createElement("div");
-    //   backdrop.style.backgroundColor = "#232323";
-    //   backdrop.style.zIndex = "99999";
-    //   backdrop.style.position = "absolute";
-    //   backdrop.style.top = "0";
-    //   backdrop.style.left = "0";
-    //   backdrop.style.width = "100%";
-    //   backdrop.style.height = "100%";
-    //   document.body.appendChild(backdrop);
-    //   break;
-    // }
+    case "overlay": {
+      const { ...style } = config;
+
+      const backdrop = document.createElement("div");
+      backdrop.style.zIndex = "99999";
+      backdrop.style.position = "fixed";
+      backdrop.style.display = "flex";
+      backdrop.style.justifyContent = "center";
+      backdrop.style.alignItems = "center";
+      backdrop.style.top = "0";
+      backdrop.style.left = "0";
+      backdrop.style.width = "100%";
+      backdrop.style.height = "100%";
+      backdrop.style.flexDirection = "column";
+      backdrop.style.backgroundColor = style.backdropColor!;
+
+      document.body.appendChild(backdrop);
+
+      const modal = document.createElement("div");
+      modal.style.display = "flex";
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
+      modal.style.borderStyle = "solid";
+      modal.innerHTML = style.text!;
+      modal.style.fontSize = style.fontSize!;
+      modal.style.color = style.color!;
+      modal.style.textAlign = style.textAlign!;
+      modal.style.backgroundColor = style.backgroundColor!;
+      modal.style.borderColor = style.borderColor!;
+      modal.style.borderWidth = style.borderWidth!;
+      modal.style.borderRadius = style.borderRadius!;
+      modal.style.width = style.width!;
+      modal.style.height = style.height!;
+
+      backdrop.appendChild(modal);
+
+      break;
+    }
   }
 });
 
