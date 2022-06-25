@@ -50,7 +50,10 @@ export const PushToQueue = (message: string) => {
   );
 };
 
-export const PopFromQueue = async () =>
+export const PopFromQueue = async (): Promise<{
+  message: string;
+  [key: string]: any;
+}> =>
   new Promise((resolve, reject) => {
     rsmq.popMessage({ qname: process.env.QUEUE_NAME! }, function (err, resp) {
       if (err) {
@@ -59,7 +62,7 @@ export const PopFromQueue = async () =>
       }
       // @ts-ignore
       if (resp.id) {
-        resolve(resp);
+        resolve(resp as { message: string });
       } else {
         reject();
       }
