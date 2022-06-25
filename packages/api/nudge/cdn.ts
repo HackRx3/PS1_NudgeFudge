@@ -116,8 +116,6 @@ const getTriggerNudges = async () => {
     await fetch(`${API_BASE_URL}/nudge/trigger/B`)
   ).json();
 
-  console.log(success);
-
   nudges.forEach(({ nudge: { type, config } }) => RenderNudge(type, config));
 
   await new Promise(async (resolve) => setTimeout(resolve, 500));

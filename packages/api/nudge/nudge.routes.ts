@@ -27,7 +27,7 @@ const handlePostNudge = async (
 };
 
 const handleGetCampaign = async (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {
