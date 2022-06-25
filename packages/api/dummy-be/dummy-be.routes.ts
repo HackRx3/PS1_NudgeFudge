@@ -1,6 +1,9 @@
 import { Router, Request, Response, NextFunction } from "express";
 
-import { getNudgesBasedOnAppIdAndEventLabel } from "../nudge/nudge.service";
+import {
+  getNudgesBasedOnAppIdAndEventLabel,
+  postTriggerNudge,
+} from "../nudge/nudge.service";
 import { PopFromQueue, PushToQueue } from "../services/queue.service";
 
 const router = Router();
@@ -31,8 +34,7 @@ const handleDummyPost = async (
       event_label
     );
 
-    console.log(nudges);
-    // ! TODO: push the nudges to socket that will be received by the CDN
+    await postTriggerNudge(nudges);
   } catch (err) {
     next(err);
   }

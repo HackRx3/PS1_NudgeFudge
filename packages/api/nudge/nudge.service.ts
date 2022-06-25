@@ -22,3 +22,22 @@ export const getNudgesBasedOnAppIdAndEventLabel = async (
   const db = await DatabaseService.getInstance().getDb("nudges");
   return await db.find({ app_id, event_label }).toArray();
 };
+
+export const getTriggerNudges = async (
+  app_id: string
+): Promise<Array<Object>> => {
+  const db = await DatabaseService.getInstance().getDb("trigger nudge");
+  return await db.find({ app_id }).toArray();
+};
+
+export const postTriggerNudge = async (nudges: Array<Object>): Promise<any> => {
+  const db = await DatabaseService.getInstance().getDb("trigger nudge");
+  await db.insertMany(nudges);
+  return true;
+};
+
+export const deleteTriggerNudges = async (app_id: string): Promise<boolean> => {
+  const db = await DatabaseService.getInstance().getDb("trigger nudge");
+  await db.deleteMany({ app_id });
+  return true;
+};
