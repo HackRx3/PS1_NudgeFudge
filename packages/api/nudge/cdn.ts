@@ -113,7 +113,7 @@ const RenderNudge = (type, config) => {
 
 const getTriggerNudges = async () => {
   let { success, data: nudges } = await (
-    await fetch(`${API_BASE_URL}/nudge/trigger/B`)
+    await fetch(`${API_BASE_URL}/nudge/trigger/${app_id}`)
   ).json();
 
   nudges.forEach(({ nudge: { type, config } }) => RenderNudge(type, config));
