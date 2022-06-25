@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import './side.css';
+import '../SideBar/side.css';
 
 function SideBar() {
     const [navPage, setnavPage] = useState(0);
@@ -17,7 +18,7 @@ function SideBar() {
                 <div className="row pl-3 pr-5 pt-2">
                     <div className="col-sm-4"><img className=' userImage'src='https://www.w3schools.com/w3images/avatar2.png'/>  </div>
                     <div className="col-sm-8">
-                        <span> Welcome, User</span> 
+                        <span> Welcome, Mark</span> 
                         <div className='icon-item'> 
                          <div><i className="fa fa-envelope " aria-hidden="true" /></div>
                             <div><i className="fa fa-user " aria-hidden="true" /></div>                      
