@@ -57,7 +57,7 @@ router.post(
   validateQuery("body", postProjectSchema),
   handlePostProject
 );
-router.get("/nudges/:app_id", validateJwt(), handleGetProjectNudges);
+router.get("/nudges/:app_id", handleGetProjectNudges);
 router.get("/nudges", validateJwt(), handleGetProjects);
 
 export default router;
