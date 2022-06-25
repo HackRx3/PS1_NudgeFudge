@@ -1,8 +1,11 @@
 import { Form, Formik } from "formik";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Input } from "../components/shared";
+import { loginUser } from "../services/api";
+import { login } from "../store/user.slice";
 
 const initialValues = {
   username: "",
@@ -14,6 +17,7 @@ const AuthPage = () => {
 
   const location = useLocation();
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let from = (location.state as any)?.from?.pathname || "/";
 
@@ -36,21 +40,14 @@ const AuthPage = () => {
           onSubmit={async (values) => {
             try {
               setLoading(true);
-              console.log(values);
-              // await postFeedback(values);
-              // toast.success("Thank you for your feedback! 🥰", {
-              //   position: "top-center",
-              //   autoClose: 5000,
-              //   hideProgressBar: false,
-              //   closeOnClick: true,
-              //   pauseOnHover: true,
-              //   draggable: true,
-              //   progress: undefined,
-              // });
-              navigate(from, { replace: true });
-            } catch (err) {
-              // console.log(err);
-              // Toast(false, "Uh oh! We are facing some issues. Please again later!");
+              const data = await loginUser(values);
+
+              if (data) {
+                dispatch(
+                  login({ token: data.authToken, username: values.username })
+                );
+                navigate(from, { replace: true });
+              }
             } finally {
               setLoading(false);
             }
