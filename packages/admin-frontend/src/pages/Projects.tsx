@@ -12,6 +12,7 @@ import { createProject, fetchAllProjects } from "../services/api";
 import useAuth from "../hooks/useAuth";
 
 import { SiJavascript } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -23,8 +24,14 @@ const validationSchema = Yup.object().shape({
   platform: Yup.string().trim().required("Required"),
 });
 
+interface ProjectType {
+  name: string;
+  platform: string;
+  app_id: string;
+}
+
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -40,9 +47,9 @@ const Projects = () => {
   }, []);
 
   return (
-    <main className="flex-1 flex flex-col">
+    <main className="flex-1 flex flex-col min-h-screen">
       <header className="bg-primary-500 flex items-center py-3 px-4 text-white">
-        <h1 className="text-xl font-semibold mr-auto">Projects</h1>
+        <h1 className="text-xl font-semibold mr-auto">Your Projects</h1>
         <button
           onClick={() => setModalOpen(true)}
           className="bg-primary-300 filter transition-all hover:brightness-110 active:brightness-95 px-6 py-2 text-white font-semibold rounded flex items-center gap-2"
@@ -61,21 +68,20 @@ const Projects = () => {
       </header>
       <section className="flex-1 bg-offWhite py-6 px-4">
         <div className="flex items-start gap-5 max-w-5xl mx-auto">
-          {projects.map(
-            (proj: { name: string; platform: string; app_id: string }) => (
-              <article
-                key={proj.app_id}
-                className="p-6 bg-gradient-to-br from-slate-100 to-slate-300 rounded-md w-1/2  md:w-1/3 lg:w-1/4 "
-              >
-                <div className="text-">{proj.name}</div>
-                <SiJavascript
-                  size={24}
-                  className="block mt-6 ml-auto bg-black"
-                  style={{ color: "#efd81d" }}
-                />
-              </article>
-            )
-          )}
+          {projects.map((proj) => (
+            <Link
+              to={`/dashboard/${proj.app_id}`}
+              key={proj.app_id}
+              className="block border border-slate-300 shadow-md transition-shadow hover:shadow-lg p-6 bg-gradient-to-br from-slate-100 to-slate-300 rounded-md w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+            >
+              <div className="text-">{proj.name}</div>
+              <SiJavascript
+                size={24}
+                className="block mt-6 ml-auto bg-black"
+                style={{ color: "#efd81d" }}
+              />
+            </Link>
+          ))}
         </div>
       </section>
 
