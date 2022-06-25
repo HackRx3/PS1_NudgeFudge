@@ -1,3 +1,4 @@
+import '../styles/Signup.css'
 import React from "react";
 
 const Signup = () => {
@@ -7,9 +8,9 @@ const Signup = () => {
       <br></br>
       {/* add email id and password */}
       <h4>
-        Email ID: <input />{" "}
+        Email ID: <input />
       </h4>
-      <h4>
+      <h4> 
         Password: <input />
       </h4>
       <h4>Confirm password: <input /> </h4>
