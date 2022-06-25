@@ -58,6 +58,6 @@ router.post(
   handlePostProject
 );
 router.get("/nudges/:app_id", handleGetProjectNudges);
-router.get("/nudges", validateJwt(), handleGetProjects);
+router.get("/", validateJwt(), handleGetProjects);
 
 export default router;
