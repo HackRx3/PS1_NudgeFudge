@@ -2,6 +2,9 @@
 
 
 
+button{
+    border-radius: 10px;
+}
 
 .layout{
     width: 78vw;
