@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import '../MainPage/main.css';
 import Axios from 'axios';
 import * as ReactBootStrap from 'react-bootstrap';
+import Spinner from '../../Spinner';
 
 function Layout() {
-    let isLoading = useState(false);
+    let isLoading = useState(true);
 
     var progress1={
         width: '40%',height: '35px'
@@ -15,8 +16,17 @@ function Layout() {
     var progress3 = {
         width: '75%', height: '35px'
     }
+    const spin = () => {
+        isLoading(true)
+        setTimeout(()=> {
+            isLoading(false)
+            setShow(!show);
+        }, 2000)
+    };
+    if(isLoading) return <ReactBootStrap.Spinner animation="border" />
+
     return (
-        <div className='layout'>
+        <div className='layout' onLoad={spin}>
 
             <span><i className="fa fa-compass iconSize" aria-hidden="true" />
             
@@ -91,26 +101,11 @@ function ItemCon({ classname, value}){
         'backgroundColor': `${ value.color}`,
         'border-radius': 10,
     }
-    let isLoading=useState(false);
 
-    const jaggiKiAPI= async ()=>{
-        // try{
-        //     let res = await axios.get('URL');
-
-        // }catch(err){
-        //     console.log(err);
-        // }
-        
-        let result = await new Promise(resolve => setTimeout(()=>{
-            console.log("Hello world");
-        },2000));
-        
-
-    }
 
     return (
     
-        <button onClick={jaggiKiAPI} className={`item-container p-2 `} style={bgcolor}>
+        <button className={`item-container p-2 `} style={bgcolor}>
                 <div className='item-row'>
                 <i className={`${value.icon} iconSize`} aria-hidden="true" />
                     <div>{value.value}</div>
