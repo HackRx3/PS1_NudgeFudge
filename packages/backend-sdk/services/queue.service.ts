@@ -30,6 +30,38 @@ export const QueueService = () => {
           }
         }
       );
+    } else {
+      console.info("Queue with the name", process.env.QUEUE_NAME, "exists");
+    }
+  });
+};
+
+export const PushToQueue = (message: string) => {
+  rsmq.sendMessage(
+    { qname: process.env.QUEUE_NAME!, message },
+    function (err, resp) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+
+      console.log("Message sent. ID:", resp);
+    }
+  );
+};
+
+export const ReceiveFromQueue = () => {
+  rsmq.popMessage({ qname: process.env.QUEUE_NAME! }, function (err, resp) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    // @ts-ignore
+    if (resp.id) {
+      console.log("Message received and deleted from queue", resp);
+    } else {
+      console.log("No messages for me...");
     }
   });
 };
