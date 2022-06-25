@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { Input } from "../components/shared";
+import { Input, Logo } from "../components/shared";
 import { loginUser } from "../services/api";
 import { login } from "../store/user.slice";
 
@@ -31,9 +31,7 @@ const AuthPage = () => {
   return (
     <main className="px-4 py-6 min-h-screen grid bg-offWhite place-items-center">
       <section className="p-6 rounded-md border bg-white w-full max-w-lg">
-        <h1 className="text-center text-3xl mb-6 font-semibold text-primary-300">
-          {process.env.REACT_APP_NAME}
-        </h1>
+        <Logo className="mb-6 h-8 w-auto block mx-auto" dark />
         <Formik
           initialValues={initialValues}
           validationSchema={loginValidationSchema}

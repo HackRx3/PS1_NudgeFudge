@@ -1,27 +1,26 @@
-import React from "react";
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useMatch,
-  useParams,
-} from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 
-import { MdCampaign, MdBolt, MdIntegrationInstructions } from "react-icons/md";
+import {
+  MdCampaign,
+  MdBolt,
+  MdIntegrationInstructions,
+  MdArrowLeft,
+} from "react-icons/md";
+import { Logo } from "./";
 
 const ROUTES = [
   {
-    path: "/",
+    path: "",
     Icon: MdIntegrationInstructions,
     title: "Integration",
   },
   {
-    path: "/campaigns",
+    path: "campaigns",
     Icon: MdCampaign,
     title: "Campaigns",
   },
   {
-    path: "/triggers",
+    path: "triggers",
     Icon: MdBolt,
     title: "Triggers",
   },
@@ -29,26 +28,39 @@ const ROUTES = [
 
 const Dashboard = () => {
   const location = useLocation();
-  console.log(location);
-  const { app_id } = useParams();
+
   return (
     <section className="flex min-h-screen">
       {/* Navbar */}
       <aside className="flex flex-col font-semibold bg-primary-700 text-white">
-        <nav className="mt-40 flex flex-col">
+        <div className="font-bold py-12 px-4 text-center">
+          <Logo className="w-full h-auto" />
+        </div>
+        <nav className="mt-6 flex flex-col">
+          <Link
+            to="/dashboard"
+            className={`whitespace-nowrap cursor-pointer pr-6 pl-4 py-4 flex items-center gap-2 leading-none filter hover:brightness-110 bg-primary-700`}
+          >
+            {/* <route.Icon size={24} /> */}
+            <MdArrowLeft size={24} />
+            All Projects
+          </Link>
           {ROUTES.map((route) => (
-            <Link
+            <NavLink
               key={route.path}
-              to={`/dashboard/${app_id}${route.path}`}
-              className={`cursor-pointer pr-6 pl-4 py-4 flex items-center gap-2 leading-none filter ${
-                location.pathname === `/dashboard/${app_id}${route.path}`
-                  ? "bg-primary-300"
-                  : " hover:brightness-110 bg-primary-700"
-              } `}
+              to={route.path}
+              className={({ isActive }) =>
+                `whitespace-nowrap cursor-pointer pr-6 pl-4 py-4 flex items-center gap-2 leading-none filter ${
+                  isActive
+                    ? "bg-primary-300"
+                    : " hover:brightness-110 bg-primary-700"
+                } `
+              }
+              end
             >
               <route.Icon size={24} />
               {route.title}
-            </Link>
+            </NavLink>
           ))}
         </nav>
       </aside>

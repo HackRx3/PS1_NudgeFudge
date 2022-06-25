@@ -8,6 +8,8 @@ import { MdCampaign } from "react-icons/md";
 
 import { Input } from "../components/shared";
 import { NUDGE_TYPES } from "../services/constants";
+import { useDispatch } from "react-redux";
+import { signout } from "../store/user.slice";
 
 const initialValues = {
   label: "",
@@ -17,17 +19,25 @@ const initialValues = {
 const Campaigns = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   return (
     <main className="flex-1">
-      <header className="bg-primary-500 flex items-center justify-between py-3 px-4 text-white">
-        <h1 className="text-xl font-semibold">Campaigns</h1>
+      <header className="bg-primary-500 flex items-center py-3 px-4 text-white">
+        <h1 className="text-xl font-semibold mr-auto">Campaigns</h1>
         <button
           onClick={() => setModalOpen(true)}
           className="bg-primary-300 filter transition-all hover:brightness-110 active:brightness-95 px-6 py-2 text-white font-semibold rounded flex items-center gap-2"
         >
           <BsPlusLg size={14} />
           Add New
+        </button>
+        <button
+          className="ml-8 px-4 py-2"
+          onClick={() => {
+            dispatch(signout());
+          }}
+        >
+          Signout
         </button>
       </header>
 
