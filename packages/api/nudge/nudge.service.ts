@@ -12,5 +12,5 @@ export const addNudge = async (data: PostNudgeType): Promise<boolean> => {
 
 export const getNudgesBasedOnAppId = async (app_id: string): Promise<any> => {
   const db = await DatabaseService.getInstance().getDb("nudges");
-  return await db.find({ app_id }).toArray();
+  return await db.find({ app_id, event_label: { $exists: false } }).toArray();
 };
