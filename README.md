@@ -7,9 +7,9 @@
 
 <br>
 <p align="center">
-<b>Team NudgeFudge presenting NudgeLab.
+<b>Team NudgeFudge presents NudgeLab.
 <br>
-No Code App Nudges!</b>
+No Code App Nudges</b>
 </p>
 <blockquote align="center"> 
   built on <span style="color: #8b0000;">☕</span> at <a href="https://hackrx.in">HackRx3.0</a>.
