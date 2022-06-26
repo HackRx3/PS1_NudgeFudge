@@ -16,17 +16,17 @@ No Code App Nudges</b>
 
 </blockquote>
 
-## 💡 Problem Statement
+# 💡 Problem Statement
 
 Develop an in-app tool to allow setting up in-app nudges for various use cases, tool to allow nudge configuration on screen without need of having to code them on the screen / per use case.
 
-## 📺 Preview
+# 📺 Preview
 
 <div align="center">
   <img alt="Screenshot" src="docs/preview.png" />
 </div>
 
-## 💻 Tech Stack
+# 💻 Tech Stack
 
 - MongoDB
 - ExpressJS
@@ -35,7 +35,7 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 - TypeScript
 - Redis
 
-## 🔧 Utilisation
+# 🔧 Utilisation
 
 1. Go to \***\*\_\*\*** and create your project
 2. In your project, add some nudges
@@ -44,30 +44,41 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 ```html
 <body>
   <!-- your code -->
-  <script src="_______" data-app-id="demo"></script>
+  <script
+    src="https://nudgelab.jagnani73.com/api/v1/nudge/campaign.js"
+    data-app-id="demo-app-id"
+  ></script>
 </body>
 ```
 
-## 📦 Inside the box
+# ⏭️ What's next
+
+- Add more types of nudges, with more customizing options
+- Dynamic drag and drop to get IDs of elements
+- Analytics for the nudges and how the user responds to them; tracking user engagement
+- Using a DLQ for nudges that were not able to be received; cases of failure of delivery
+- Adding support for more platforms
+
+# 📦 Inside the box
 
 - System Arch Diagram
 - User flow
 
-## 📜 License
+# 📜 License
 
 `NudgeLab` is available under the MIT license. See the [`LICENSE`](https://github.com/HackRx3/PS1_NudgeFudge/blob/main/LICENSE) file for more info.
 
-## 🤝 Contributing
+# 🤝 Contributing
 
 Please read [`Contributing.md`](https://github.com/HackRx3/PS1_NudgeFudge/blob/main/Contributing.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## 💥 Contributors
+# 💥 Contributors
 
 <a href="https://github.com/HackRx3/PS1_NudgeFudge/graphs/contributors">
 <img src="https://contrib.rocks/image?repo=HackRx3/PS1_NudgeFudge" alt="Contributors">
 </a>
                                                                                   
-## 🚨 Forking this repo
+# 🚨 Forking this repo
 
 Many people have contacted us asking if they can use this code for their own websites. The answer to that question is usually "yes", with attribution. There are some cases, such as using this code for a business or something that is greater than a personal project, that we may be less comfortable saying yes to. If in doubt, please don't hesitate to ask us.
 
