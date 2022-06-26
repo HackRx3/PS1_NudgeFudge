@@ -20,6 +20,17 @@ No Code App Nudges</b>
 
 Develop an in-app tool to allow setting up in-app nudges for various use cases, tool to allow nudge configuration on screen without need of having to code them on the screen / per use case.
 
+# 🧠 Knowledge Primer
+
+- A _Nudge_ is a visual element that is used to draw attention of the user to something, for example a new section in an application.
+- There are two types of _Users_ that we have considered
+  - **Admin**, a kind of user that adds the nudges.
+  - **Client** are the ones for which the nudges are created.
+- We have considered there are two types of ways to render a nudge
+  - **Campaign**s, that can be run manually by _Admin_.
+  - **Trigger** based, that are displayed after execution of a particular function, identified via unique `event_label`.
+- Our implementation builds upon the existing backend servers of a business. These backends are referred to as **Business Backend**.
+
 # 📺 Preview
 
 <div align="center">
