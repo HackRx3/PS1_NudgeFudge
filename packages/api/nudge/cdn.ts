@@ -78,6 +78,10 @@ const RenderNudge = (type, config) => {
       backdrop.style.flexDirection = "column";
       backdrop.style.backgroundColor = style.backdropColor!;
 
+      backdrop.addEventListener("click", () => {
+        backdrop.remove();
+      });
+
       document.body.appendChild(backdrop);
 
       const modal = document.createElement("div");
