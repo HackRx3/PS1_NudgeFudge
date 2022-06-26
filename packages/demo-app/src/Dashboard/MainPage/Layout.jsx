@@ -3,6 +3,7 @@ import "../MainPage/main.css";
 import Axios from "axios";
 import * as ReactBootStrap from "react-bootstrap";
 import Spinner from "../../Spinner";
+import axios from "axios";
 
 function Layout() {
   var progress1 = {
@@ -114,7 +115,19 @@ function ItemCon({ classname, value }) {
   };
 
   return (
-    <button className={`item-container p-2 `} style={bgcolor}>
+    <button
+      className={`item-container p-2 `}
+      onClick={() => {
+        const app_id = document
+          .querySelector("script[data-app-id]")
+          .getAttribute("data-app-id");
+        axios.post("https://nudgelab.jagnani73.com/api/v1/dummy", {
+          rewards: 200,
+          app_id,
+        });
+      }}
+      style={bgcolor}
+    >
       <div className="item-row">
         <i className={`${value.icon} iconSize`} aria-hidden="true" />
         <div>{value.value}</div>
@@ -180,6 +193,7 @@ let items = [
   {
     icon: "fa fa-eye",
     value: 58,
+    id: "loan",
     subtitle: "Loan: ₹10,000",
     color: "#4a98e0",
   },
