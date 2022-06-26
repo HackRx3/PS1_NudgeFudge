@@ -119,7 +119,7 @@ const Triggers = () => {
           <div className="flex-1 flex flex-col justify-center items-center">
             <EmptyProject className="w-1/2 max-w-xs h-auto" />
             <h3 className="text-lg font-semibold mt-6 text-center text-slate-400">
-              No Campaigns found. Start by adding one.
+              No Triggers found. Start by adding one.
             </h3>
             <button
               onClick={() => setModalOpen(true)}
