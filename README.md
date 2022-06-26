@@ -34,22 +34,22 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 # 📺 Preview
 
 <div align="center">
-  <img alt="Screenshot" src="docs/preview1.png" />
+  <img alt="Preview Images" src="docs/preview1.png" />
 </div>
 <div align="center">
-  <img alt="Screenshot" src="docs/preview2.png" />
+  <img alt="Preview Images" src="docs/preview2.png" />
 </div>
 <div align="center">
-  <img alt="Screenshot" src="docs/preview3.png" />
+  <img alt="Preview Images" src="docs/preview3.png" />
 </div>
 <div align="center">
-  <img alt="Screenshot" src="docs/preview4.png" />
+  <img alt="Preview Images" src="docs/preview4.png" />
 </div>
 <div align="center">
-  <img alt="Screenshot" src="docs/preview5.png" />
+  <img alt="Preview Images" src="docs/preview5.png" />
 </div>
 <div align="center">
-  <img alt="Screenshot" src="docs/preview6.png" />
+  <img alt="Preview Images" src="docs/preview6.png" />
 </div>
 
 # 💻 Tech Stack
@@ -88,6 +88,10 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 - Since we are building upon an existing _business backend_, there are API calls present. Our **Backend SDK** intercepts those calls and injects an `event_label` to the data. This data is then pushed to a SMQ (Simple Message Queue).
 - The **Backend Server** has a listener on the queue and pops every message received in the queue. It then filters and fetches out the nudges based on the `event_label` and `app_id`. These fetched configurations are then pushed back to the **Client SDK** that is listening to a web socket for these **Trigger Nudges**.
 - On receiving configuration on the socket, the **Client SDK** again renders the requested nudges on the application.
+
+<div align="center">
+  <img alt="System Architecture" src="docs/arch1.png" />
+</div>
 
 ## 2. Admin Flow
 
