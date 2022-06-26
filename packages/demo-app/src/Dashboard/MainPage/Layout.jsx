@@ -21,7 +21,7 @@ function Layout() {
   // if (isLoading) return <ReactBootStrap.Spinner animation="border" />;
 
   return (
-    <div className="layout" onLoad={spin}>
+    <div className="layout">
       <span>
         <i className="fa fa-compass iconSize" aria-hidden="true" />
 
