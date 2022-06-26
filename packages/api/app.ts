@@ -1,7 +1,6 @@
 import { config as dotenvConfig } from "dotenv";
-import express, { Express, Request, Response, NextFunction } from "express";
+import express, { Express } from "express";
 import cors from "cors";
-import { join } from "path";
 
 import { errorHandler } from "./error/error.handler";
 import { DatabaseService } from "./services/database.service";
@@ -23,28 +22,6 @@ app.use("/api/v1/nudge", nudgeRouter);
 app.use("/api/v1/project", projectRouter);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/dummy", dummyRoutes);
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(join(__dirname, "..", "client", "out")));
-  app.use("*", (_req: Request, res: Response, next: NextFunction) => {
-    try {
-      res.sendFile(join(__dirname, "..", "client", "out", "index.html"));
-    } catch (err) {
-      next(err);
-    }
-  });
-} else if (process.env.NODE_ENV === "maintenance") {
-  app.use("*", (_req: Request, res: Response) => {
-    res.status(503).sendFile(join(__dirname, "..", "templates", "503.html"));
-  });
-} else {
-  app.use("*", (req: Request, res: Response) => {
-    res.status(404).json({
-      success: false,
-      error: `Cannot ${req.method} ${req.originalUrl}`,
-    });
-  });
-}
 
 app.use(errorHandler);
 
