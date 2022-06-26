@@ -9,6 +9,7 @@ const RenderNudge = (type, config) => {
       const { elementId, ...style } = config;
 
       const parent = document.getElementById(elementId!);
+      if (!parent) return;
       parent!.style.position = "relative";
 
       const dotNudge = document.createElement("div");
@@ -65,42 +66,72 @@ const RenderNudge = (type, config) => {
     case "overlay": {
       const { ...style } = config;
 
-      const backdrop = document.createElement("div");
-      backdrop.style.zIndex = "99999";
-      backdrop.style.position = "fixed";
-      backdrop.style.display = "flex";
-      backdrop.style.justifyContent = "center";
-      backdrop.style.alignItems = "center";
-      backdrop.style.top = "0";
-      backdrop.style.left = "0";
-      backdrop.style.width = "100%";
-      backdrop.style.height = "100%";
-      backdrop.style.flexDirection = "column";
-      backdrop.style.backgroundColor = style.backdropColor!;
-
-      backdrop.addEventListener("click", () => {
-        backdrop.remove();
-      });
-
-      document.body.appendChild(backdrop);
-
-      const modal = document.createElement("div");
+      const modal = document.createElement("section");
+      modal.style.zIndex = "99999";
+      modal.style.position = "fixed";
       modal.style.display = "flex";
       modal.style.justifyContent = "center";
       modal.style.alignItems = "center";
-      modal.style.borderStyle = "solid";
-      modal.innerHTML = style.text!;
-      modal.style.fontSize = style.fontSize!;
-      modal.style.color = style.color!;
-      modal.style.textAlign = style.textAlign!;
-      modal.style.backgroundColor = style.backgroundColor!;
-      modal.style.borderColor = style.borderColor!;
-      modal.style.borderWidth = style.borderWidth!;
-      modal.style.borderRadius = style.borderRadius!;
-      modal.style.width = style.width!;
-      modal.style.height = style.height!;
+      modal.style.flexDirection = "column";
+      modal.style.top = "0";
+      modal.style.left = "0";
+      modal.style.width = "100%";
+      modal.style.height = "100%";
 
-      backdrop.appendChild(modal);
+      document.body.appendChild(modal);
+
+      const backdrop = document.createElement("div");
+      backdrop.style.position = "absolute";
+      backdrop.style.left = "0";
+      backdrop.style.right = "0";
+      backdrop.style.width = "100%";
+      backdrop.style.height = "100%";
+      backdrop.style.zIndex = "0";
+      backdrop.style.backgroundColor = style.backdropColor!;
+      // animation 🔥
+      backdrop.style.opacity = 0;
+      backdrop.style.transition = "all 300ms ease";
+
+      backdrop.addEventListener("click", () => {
+        backdrop.style.opacity = 0;
+
+        content.style.transform = "scale(0.5)";
+        content.style.opacity = 0;
+        setTimeout(() => {
+          modal.remove();
+        }, 300);
+      });
+
+      const content = document.createElement("article");
+      content.style.zIndex = "10";
+      content.style.display = "flex";
+      content.style.justifyContent = "center";
+      content.style.alignItems = "center";
+      content.style.borderStyle = "solid";
+      content.innerHTML = style.text!;
+      content.style.fontSize = style.fontSize!;
+      content.style.color = style.color!;
+      content.style.textAlign = style.textAlign!;
+      content.style.backgroundColor = style.backgroundColor!;
+      content.style.borderColor = style.borderColor!;
+      content.style.borderWidth = style.borderWidth!;
+      content.style.borderRadius = style.borderRadius!;
+      content.style.width = style.width!;
+      content.style.height = style.height!;
+      // animation 🔥
+      content.style.transform = "scale(0.5)";
+      content.style.opacity = 0;
+      content.style.transition = "all 300ms ease";
+
+      modal.appendChild(backdrop);
+      modal.appendChild(content);
+
+      setTimeout(() => {
+        backdrop.style.opacity = 1;
+
+        content.style.opacity = 1;
+        content.style.transform = "scale(1)";
+      }, 5);
 
       break;
     }
