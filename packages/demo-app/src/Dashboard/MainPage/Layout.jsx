@@ -5,8 +5,6 @@ import * as ReactBootStrap from "react-bootstrap";
 import Spinner from "../../Spinner";
 
 function Layout() {
-  let isLoading = useState(true);
-
   var progress1 = {
     width: "40%",
     height: "35px",
@@ -19,13 +17,7 @@ function Layout() {
     width: "75%",
     height: "35px",
   };
-  const spin = () => {
-    isLoading(true);
-    setTimeout(() => {
-      isLoading(false);
-      setShow(!show);
-    }, 2000);
-  };
+
   // if (isLoading) return <ReactBootStrap.Spinner animation="border" />;
 
   return (
@@ -47,7 +39,7 @@ function Layout() {
 
       <div class="d-flex pt-4 flex-wrap">
         <div class="p-2  mr-2 ">
-          <div>Regions</div>
+          <div>Analytics</div>
           <img
             className="sized-image"
             src="https://www.w3schools.com/w3images/region.jpg"
@@ -182,25 +174,25 @@ let items = [
   {
     icon: "fa fa-comment",
     value: 44,
-    subtitle: "Messages",
+    subtitle: "Balance: ₹20000",
     color: "red",
   },
   {
     icon: "fa fa-eye",
     value: 58,
-    subtitle: "Views",
+    subtitle: "Loan: ₹10,000",
     color: "#4a98e0",
   },
   {
     icon: "fa fa-share-alt",
     value: 67,
-    subtitle: "Shares",
+    subtitle: "Private schemes: ₹50000",
     color: "green",
   },
   {
     icon: "fa fa-users",
     value: 94,
-    subtitle: "Users",
+    subtitle: "Govt Schemes: ₹5000",
     color: "orange",
   },
 ];

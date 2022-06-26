@@ -51,11 +51,7 @@ function SideBar() {
 
 function ListTile({ items, func, classStlye }) {
   return (
-    <div
-      className={classStlye}
-      onClick={func}
-      id={items.tile === "View" ? "view_btn" : Math.random()}
-    >
+    <div className={classStlye} onClick={func} id={items.tile + "_btn"}>
       <div className="d-flex">
         <div className="p-2 ">
           <i className={items.icon} aria-hidden="true" />
