@@ -18,37 +18,39 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white10,
-          onPressed: () {
-            setState(() {
-              _url = 'http://192.168.188.84:3000';
-              _webViewController!.loadUrl(_url);
-              print("Loaded URL: $_url");
-            });
-          },
-          child: const Icon(
-            Icons.refresh,
-            size: 30,
+    return SafeArea(
+      child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.white10,
+            onPressed: () {
+              setState(() {
+                _url = 'http://192.168.188.84:3000';
+                _webViewController!.loadUrl(_url);
+                print("Loaded URL: $_url");
+              });
+            },
+            child: const Icon(
+              Icons.refresh,
+              size: 30,
+            ),
           ),
-        ),
-        body: WebView(
-          zoomEnabled: true,
-          initialUrl: _url,
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController webviewController) {
-            _webViewController = webviewController;
-          },
-          onProgress: (int progress) {
-            print('WebView is loading (progress : $progress%)');
-          },
-          onPageStarted: (String url) {
-            print('Page started loading: $url');
-          },
-          onPageFinished: (String url) {
-            print('Page finished loading: $url');
-          },
-        ));
+          body: WebView(
+            zoomEnabled: true,
+            initialUrl: _url,
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController webviewController) {
+              _webViewController = webviewController;
+            },
+            onProgress: (int progress) {
+              print('WebView is loading (progress : $progress%)');
+            },
+            onPageStarted: (String url) {
+              print('Page started loading: $url');
+            },
+            onPageFinished: (String url) {
+              print('Page finished loading: $url');
+            },
+          )),
+    );
   }
 }
