@@ -34,7 +34,22 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 # 📺 Preview
 
 <div align="center">
-  <img alt="Screenshot" src="docs/preview.png" />
+  <img alt="Screenshot" src="docs/preview1.png" />
+</div>
+<div align="center">
+  <img alt="Screenshot" src="docs/preview2.png" />
+</div>
+<div align="center">
+  <img alt="Screenshot" src="docs/preview3.png" />
+</div>
+<div align="center">
+  <img alt="Screenshot" src="docs/preview4.png" />
+</div>
+<div align="center">
+  <img alt="Screenshot" src="docs/preview5.png" />
+</div>
+<div align="center">
+  <img alt="Screenshot" src="docs/preview6.png" />
 </div>
 
 # 💻 Tech Stack
