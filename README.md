@@ -63,7 +63,7 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 
 # 🔧 Utilisation
 
-1. Go to \***\*\_\*\*** and create your project
+1. Go to the **[`Admin Dashboard`](https://nudgelab.vercel.app)** and create your project
 2. In your project, add some nudges
 3. Copy the script tag generated and paste it at the end of your `body` element
 
