@@ -19,6 +19,8 @@ import useAuth from "../hooks/useAuth";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { ReactComponent as EmptyProject } from "../assets/svg/empty-projects.svg";
+
 interface TriggerNudgeType {
   app_id: string;
   event_label: string | null;
@@ -83,7 +85,7 @@ const Triggers = () => {
         </button>
       </header>
 
-      <div className="p-4 flex-1 bg-offWhite">
+      <div className="p-4 flex-1 bg-offWhite flex flex-col">
         {triggerNudges.length > 0 ? (
           <div className="flex flex-wrap">
             {
@@ -101,6 +103,10 @@ const Triggers = () => {
                       <span className="font-semibold">Nudge Type: </span>
                       {nudge.nudge.type}
                     </div>
+                    <div className="text-sm">
+                      <span className="font-semibold">On: </span>
+                      {nudge.event_label}
+                    </div>
                     <code className="flex pt-4 mt-2 border-t border-slate-300 break-words">
                       {JSON.stringify(nudge.nudge.config, null, 2)}
                     </code>
@@ -110,7 +116,19 @@ const Triggers = () => {
             }
           </div>
         ) : (
-          <div>No triggers created</div>
+          <div className="flex-1 flex flex-col justify-center items-center">
+            <EmptyProject className="w-1/2 max-w-xs h-auto" />
+            <h3 className="text-lg font-semibold mt-6 text-center text-slate-400">
+              No Campaigns found. Start by adding one.
+            </h3>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="mt-4 bg-primary-300 filter transition-all hover:brightness-110 active:brightness-95 px-6 py-2 text-white font-semibold rounded flex items-center gap-2"
+            >
+              <BsPlusLg size={14} />
+              Add new
+            </button>
+          </div>
         )}
       </div>
 
@@ -197,7 +215,11 @@ const Triggers = () => {
                 onSubmit={async (values, { resetForm }) => {
                   setLoading(true);
                   await postNudge(
-                    { nudge: { config: values, type, label }, app_id },
+                    {
+                      nudge: { config: values, type, label },
+                      app_id,
+                      event_label: eventLabel,
+                    },
                     token
                   );
                   resetForm();
@@ -206,7 +228,11 @@ const Triggers = () => {
                   setLoading(false);
                   setTriggerNudges([
                     ...triggerNudges,
-                    { nudge: { config: values, type, label }, app_id },
+                    {
+                      nudge: { config: values, type, label },
+                      app_id,
+                      event_label: eventLabel,
+                    },
                   ]);
                 }}
               >

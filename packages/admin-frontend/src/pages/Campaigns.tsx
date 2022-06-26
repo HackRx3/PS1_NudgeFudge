@@ -19,6 +19,8 @@ import useAuth from "../hooks/useAuth";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { ReactComponent as EmptyProject } from "../assets/svg/empty-projects.svg";
+
 interface CampaignNudgeType {
   app_id: string;
   event_label: string | null;
@@ -82,7 +84,7 @@ const Campaigns = () => {
         </button>
       </header>
 
-      <div className="p-4 flex-1 bg-offWhite">
+      <div className="p-4 flex-1 bg-offWhite flex flex-col">
         {campaignNudges.length > 0 ? (
           <div className="flex flex-wrap">
             {
@@ -109,7 +111,19 @@ const Campaigns = () => {
             }
           </div>
         ) : (
-          <div>No campaigns created</div>
+          <div className="flex-1 flex flex-col justify-center items-center">
+            <EmptyProject className="w-1/2 max-w-xs h-auto" />
+            <h3 className="text-lg font-semibold mt-6 text-center text-slate-400">
+              No Campaigns found. Start by adding one.
+            </h3>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="mt-4 bg-primary-300 filter transition-all hover:brightness-110 active:brightness-95 px-6 py-2 text-white font-semibold rounded flex items-center gap-2"
+            >
+              <BsPlusLg size={14} />
+              Add new
+            </button>
+          </div>
         )}
       </div>
 
