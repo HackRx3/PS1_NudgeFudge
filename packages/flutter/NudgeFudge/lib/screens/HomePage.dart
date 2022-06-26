@@ -9,9 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String localUrl = 'https://resplendent-sopapillas-d20071.netlify.app/';
-  String wikiUrl='https://www.wikipedia.org/';
-  String _url= 'http://localhost:3000/dashboard';
+
+  String _url= 'https://resplendent-sopapillas-d20071.netlify.app/';
 
   WebViewController? _webViewController;
   @override
@@ -19,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: (){
         setState(() {
-          _url = (_url == localUrl)? wikiUrl:localUrl;
+          _url = 'https://resplendent-sopapillas-d20071.netlify.app/';
           _webViewController!.loadUrl(_url);
           print("Loaded URL: $_url");
         });
