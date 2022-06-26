@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:8000/api/v1/",
+  baseURL: "https://nudgelab.jagnani73.com/api/v1/",
 });
 
 export const loginUser = async (payload: {
@@ -13,7 +13,12 @@ export const loginUser = async (payload: {
     const res = await apiClient.post("/admin/login", payload);
     return res.data;
   } catch (err) {
-    toast.error("Something went wrong. Check the console for details.");
+    if ((err as AxiosError).response!) {
+      // @ts-ignore
+      toast.error(err.response.message);
+    } else {
+      toast.error("Something went wrong. Check the console for details.");
+    }
   }
 };
 
@@ -30,7 +35,12 @@ export const createProject = async (
     );
     return res.data;
   } catch (err) {
-    toast.error("Something went wrong. Check the console for details.");
+    if ((err as AxiosError).response!) {
+      // @ts-ignore
+      toast.error(err.response.message);
+    } else {
+      toast.error("Something went wrong. Check the console for details.");
+    }
   }
 };
 
@@ -41,6 +51,55 @@ export const fetchAllProjects = async (token: string) => {
     });
     return res.data;
   } catch (err) {
-    toast.error("Something went wrong. Check the console for details.");
+    if ((err as AxiosError).response!) {
+      // @ts-ignore
+      toast.error(err.response.message);
+    } else {
+      toast.error("Something went wrong. Check the console for details.");
+    }
+  }
+};
+
+export const getCampaignNudges = async (app_id: string) => {
+  try {
+    const res = await apiClient.get(`/project/nudges/campaign/${app_id}`);
+    return res.data;
+  } catch (err) {
+    if ((err as AxiosError).response!) {
+      // @ts-ignore
+      toast.error(err.response.message);
+    } else {
+      toast.error("Something went wrong. Check the console for details.");
+    }
+  }
+};
+
+export const getTriggerNudges = async (app_id: string) => {
+  try {
+    const res = await apiClient.get(`/project/nudges/trigger/${app_id}`);
+    return res.data;
+  } catch (err) {
+    if ((err as AxiosError).response!) {
+      // @ts-ignore
+      toast.error(err.response.message);
+    } else {
+      toast.error("Something went wrong. Check the console for details.");
+    }
+  }
+};
+
+export const postNudge = async (data: Object, token: string) => {
+  try {
+    const res = await apiClient.post("/nudge/create", data, {
+      headers: { authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (err) {
+    if ((err as AxiosError).response!) {
+      // @ts-ignore
+      toast.error(err.response.message);
+    } else {
+      toast.error("Something went wrong. Check the console for details.");
+    }
   }
 };

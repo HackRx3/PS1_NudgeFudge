@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import { Form, Formik } from "formik";
 
@@ -7,24 +7,51 @@ import { BsPlusLg } from "react-icons/bs";
 import { MdCampaign } from "react-icons/md";
 
 import Field from "../components/shared/field";
-import {
-  COMMON_NUDGE_INPUTS,
-  DOT_NUDGE_INPUTS,
-  NUDGE_TYPES,
-  OVERLAY_NUDGE_INPUTS,
-} from "../services/constants";
+import { NUDGE_TYPES } from "../services/constants";
 import { useDispatch } from "react-redux";
 import { signout } from "../store/user.slice";
 
 import * as Yup from "yup";
 import { createYupSchema, getInputsFromNudgeType } from "../services/utils";
 import { Input } from "../components/shared";
+import { getCampaignNudges, postNudge } from "../services/api";
+import useAuth from "../hooks/useAuth";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+
+interface CampaignNudgeType {
+  app_id: string;
+  event_label: string | null;
+  nudge: {
+    config: any;
+    label: string;
+    type: typeof NUDGE_TYPES[number];
+  };
+}
 
 const Campaigns = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const [campaignNudges, setCampaignNudges] = useState<any[]>([]);
+
   const [label, setLabel] = useState("");
   const [type, setType] = useState<typeof NUDGE_TYPES[number] | "">("");
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await getCampaignNudges(app_id as string);
+      if (data) {
+        setCampaignNudges(data);
+      }
+    })();
+  }, []);
+
+  const {
+    // @ts-ignore
+    user: { token },
+  } = useAuth();
+  const { app_id } = useParams();
 
   const dispatch = useDispatch();
 
@@ -35,7 +62,7 @@ const Campaigns = () => {
   };
 
   return (
-    <main className="flex-1">
+    <main className="flex-1 flex flex-col">
       <header className="bg-primary-500 flex items-center py-3 px-4 text-white">
         <h1 className="text-xl font-semibold mr-auto">Campaigns</h1>
         <button
@@ -54,6 +81,37 @@ const Campaigns = () => {
           Signout
         </button>
       </header>
+
+      <div className="p-4 flex-1 bg-offWhite">
+        {campaignNudges.length > 0 ? (
+          <div className="flex flex-wrap">
+            {
+              // @ts-ignore
+              campaignNudges.map((nudge: CampaignNudgeType, index) => (
+                <div
+                  key={index}
+                  className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+                >
+                  <article className="h-full block border cursor-default border-slate-300 px-4 py-3 shadow bg-gradient-to-br from-slate-100 to-slate-300 rounded-md">
+                    <h2 className="text-lg font-semibold">
+                      {nudge.nudge.label}
+                    </h2>
+                    <div className="text-sm">
+                      <span className="font-semibold">Nudge Type: </span>
+                      {nudge.nudge.type}
+                    </div>
+                    <code className="flex pt-4 mt-2 border-t border-slate-300 break-words">
+                      {JSON.stringify(nudge.nudge.config, null, 2)}
+                    </code>
+                  </article>
+                </div>
+              ))
+            }
+          </div>
+        ) : (
+          <div>No campaigns created</div>
+        )}
+      </div>
 
       <CSSTransition
         in={modalOpen}
@@ -125,32 +183,26 @@ const Campaigns = () => {
                 validationSchema={Yup.object().shape(
                   getInputsFromNudgeType(type).reduce(createYupSchema, {})
                 )}
-                onSubmit={async (values) => {
-                  try {
-                    setLoading(true);
-                    console.log(values);
-                    // await postFeedback(values);
-                    // toast.success("Thank you for your feedback! 🥰", {
-                    //   position: "top-center",
-                    //   autoClose: 5000,
-                    //   hideProgressBar: false,
-                    //   closeOnClick: true,
-                    //   pauseOnHover: true,
-                    //   draggable: true,
-                    //   progress: undefined,
-                    // });
-                  } catch (err) {
-                    // console.log(err);
-                    // Toast(false, "Uh oh! We are facing some issues. Please again later!");
-                  } finally {
-                    setLoading(false);
-                  }
+                onSubmit={async (values, { resetForm }) => {
+                  setLoading(true);
+                  await postNudge(
+                    { nudge: { config: values, type, label }, app_id },
+                    token
+                  );
+                  resetForm();
+                  toast.success("Nudge added!");
+                  handleModalClose();
+                  setLoading(false);
+                  setCampaignNudges([
+                    ...campaignNudges,
+                    { nudge: { config: values, type, label }, app_id },
+                  ]);
                 }}
               >
-                {({ values, touched, errors, getFieldProps }) => (
+                {({ touched, errors, getFieldProps }) => (
                   <Form className="flex flex-col items-center">
                     {getInputsFromNudgeType(type).map((question) => (
-                      <div className="self-stretch mb-4">
+                      <div key={question.id} className="self-stretch mb-4">
                         <Field
                           classNames={{
                             wrapper: "w-full",

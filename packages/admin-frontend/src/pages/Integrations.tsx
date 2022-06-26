@@ -43,7 +43,7 @@ const Integrations = () => {
           <CopyBlock
             wrapLines
             language="html"
-            text={`<script src="https://a338-103-91-88-66.ngrok.io/api/v1/nudge/campaign.js" data-app-id="${app_id}"></script>`}
+            text={`<script src="https://nudgelab.jagnani73.com/api/v1/nudge/campaign.js" data-app-id="${app_id}"></script>`}
             codeBlock
             theme={monokai}
             showLineNumbers={false}

@@ -217,27 +217,116 @@ export const OVERLAY_NUDGE_INPUTS: CustomFieldTypes[] = [
       },
     ],
   },
-  // {
-  //   name: "backgroundColor",
-  //   id: "backgroundColor",
-  //   label: "Dot Color",
-  //   type: "text",
-  //   placeholder: "#ffab00 / blue / rgba(20, 100, 20, 0.6)",
-  //   validationType: "string",
-  //   validations: [
-  //     {
-  //       type: "required",
-  //       params: ["Required"],
-  //     },
-  //   ],
-  // },
+  {
+    name: "color",
+    id: "color",
+    label: "Text Color",
+    type: "text",
+    placeholder: "#ffab00 / blue / rgba(20, 100, 20, 0.6)",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["Required"],
+      },
+    ],
+  },
+  {
+    name: "backdropColor",
+    id: "backdropColor",
+    label: "Backdrop Color",
+    type: "text",
+    placeholder: "#ffab00 / blue / rgba(20, 100, 20, 0.6)",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["Required"],
+      },
+    ],
+  },
+  {
+    name: "backgroundColor",
+    id: "backgroundColor",
+    label: "Background Color",
+    type: "text",
+    placeholder: "#ffab00 / blue / rgba(20, 100, 20, 0.6)",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["Required"],
+      },
+    ],
+  },
+  {
+    name: "borderColor",
+    id: "borderColor",
+    label: "Border Color",
+    type: "text",
+    placeholder: "#ffab00 / blue / rgba(20, 100, 20, 0.6)",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["Required"],
+      },
+    ],
+  },
+  {
+    name: "borderWidth",
+    id: "borderWidth",
+    label: "Border Width",
+    type: "text",
+    placeholder: "10.8pt / 16px / 1.25rem",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["This field is required"],
+      },
+    ],
+  },
+  {
+    name: "borderRadius",
+    id: "borderRadius",
+    label: "Border Radius",
+    type: "text",
+    placeholder: "10.8pt / 16px / 1.25rem",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["This field is required"],
+      },
+    ],
+  },
+  {
+    name: "width",
+    id: "width",
+    label: "Width",
+    type: "text",
+    placeholder: "10.8pt / 16px / 1.25rem",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["This field is required"],
+      },
+    ],
+  },
+  {
+    name: "Height",
+    id: "Height",
+    label: "Height",
+    type: "text",
+    placeholder: "10.8pt / 16px / 1.25rem",
+    validationType: "string",
+    validations: [
+      {
+        type: "required",
+        params: ["This field is required"],
+      },
+    ],
+  },
 ];
-
-// color: yup.string().trim().default("#1A1A1A"),
-// backdropColor: yup.string().trim().default("#23232375"),
-// backgroundColor: yup.string().trim().default("##FAFAFA"),
-// borderColor: yup.string().trim().default("#0067b575"),
-// borderWidth: yup.string().trim().default("0.5rem"),
-// borderRadius: yup.string().trim().default("4rem"),
-// width: yup.string().trim().default("85%"),
-// height: yup.string().trim().default("fit-content"),
