@@ -9,6 +9,7 @@ const RenderNudge = (type, config) => {
       const { elementId, ...style } = config;
 
       const parent = document.getElementById(elementId!);
+      if (!parent) return;
       parent!.style.position = "relative";
 
       const dotNudge = document.createElement("div");
@@ -78,11 +79,11 @@ const RenderNudge = (type, config) => {
       backdrop.style.flexDirection = "column";
       backdrop.style.backgroundColor = style.backdropColor!;
 
+      document.body.appendChild(backdrop);
+
       backdrop.addEventListener("click", () => {
         backdrop.remove();
       });
-
-      document.body.appendChild(backdrop);
 
       const modal = document.createElement("div");
       modal.style.display = "flex";
