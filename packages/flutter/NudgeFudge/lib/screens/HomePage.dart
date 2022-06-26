@@ -9,7 +9,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _url = 'https://resplendent-sopapillas-d20071.netlify.app/';
+  //This is the hosted URL
+  // _url = 'https://resplendent-sopapillas-d20071.netlify.app/';
+  //This is the URL we'll use for demo -
+  String _url = 'http://192.168.188.84:3000';
 
   WebViewController? _webViewController;
 
@@ -20,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white10,
           onPressed: () {
             setState(() {
-              _url = 'https://resplendent-sopapillas-d20071.netlify.app/';
+              _url = 'http://192.168.188.84:3000';
               _webViewController!.loadUrl(_url);
               print("Loaded URL: $_url");
             });
