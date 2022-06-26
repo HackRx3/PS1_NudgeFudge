@@ -62,18 +62,33 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 </body>
 ```
 
+# 📦 Inside the box
+
+## 1. System Architecture Diagram
+
+- Every project created is associated with its own unique `app_id` that makes the project, and all the nudges created under it independent of the platform.
+- The ideal implementation of our application consists of a _Client SDK_, _Backend SDK_, and a _Backend Server_, _Frontend Server_.
+- The _admin_ once authenticated on the **Frontend Server**, creates a project (and in it the nudges) that communicates with the **Backend Server**; stores the data.
+- The **Client SDK** essentially works as a CDN that at the end renders the nudge on when and where needed. It handles the _Campaign Nudges_ by fetching all of the configured _campaign_ nudges for the specified `app_id`.
+- Since we are building upon an existing _business backend_, there are API calls present. Our **Backend SDK** intercepts those calls and injects an `event_label` to the data. This data is then pushed to a SMQ (Simple Message Queue).
+- The **Backend Server** has a listener on the queue and pops every message received in the queue. It then filters and fetches out the nudges based on the `event_label` and `app_id`. These fetched configurations are then pushed back to the **Client SDK** that is listening to a web socket for these **Trigger Nudges**.
+- On receiving configuration on the socket, the **Client SDK** again renders the requested nudges on the application.
+
+## 2. Admin Flow
+
+- The _Admin_ will authenticate itself.
+- It will then create a project.
+- Inside the project, there is a application specific SDK/CDN `script` that needs to be pasted in the client application.
+- It will then create the desired nudges in the project.
+
 # ⏭️ What's next
 
 - Add more types of nudges, with more customizing options
 - Dynamic drag and drop to get IDs of elements
 - Analytics for the nudges and how the user responds to them; tracking user engagement
-- Using a DLQ for nudges that were not able to be received; cases of failure of delivery
+- Using a DLQ (Dead Letter Queue) for nudges that were not able to be received; cases of failure of delivery
 - Adding support for more platforms
-
-# 📦 Inside the box
-
-- System Arch Diagram
-- User flow
+- Adding user specific nudges
 
 # 📜 License
 
