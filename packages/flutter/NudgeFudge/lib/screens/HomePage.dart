@@ -9,12 +9,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String localUrl = 'http://192.168.188.84:3000';
+  String localUrl = 'https://resplendent-sopapillas-d20071.netlify.app/';
   String wikiUrl='https://www.wikipedia.org/';
   String _url= 'http://localhost:3000/dashboard';
 
   WebViewController? _webViewController;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
