@@ -95,6 +95,10 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 <div align="center">
   <img alt="System Architecture" src="docs/arch2.png" />
 </div>
+<div align="center">
+  <img alt="System Architecture" src="docs/arch2.png" />
+</div>
+
 ## 2. Admin Flow
 
 - The _Admin_ will authenticate itself.
