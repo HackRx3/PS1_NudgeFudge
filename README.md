@@ -90,10 +90,10 @@ Develop an in-app tool to allow setting up in-app nudges for various use cases, 
 - On receiving configuration on the socket, the **Client SDK** again renders the requested nudges on the application.
 
 <div align="center">
-  <img alt="System Architecture" src="docs/arch1.png" />
+  <img alt="System Architecture" src="docs/arch3.png" />
 </div>
 <div align="center">
-  <img alt="System Architecture" src="docs/arch2.png" />
+  <img alt="System Architecture" src="docs/arch1.png" />
 </div>
 <div align="center">
   <img alt="System Architecture" src="docs/arch2.png" />
