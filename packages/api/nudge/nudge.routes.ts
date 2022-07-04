@@ -2,7 +2,11 @@ import { Router, Request, Response, NextFunction } from "express";
 import { join } from "path";
 
 import { postNudgeSchema, PostNudgeType } from "./nudge.schema";
-import { addNudge } from "./nudge.service";
+import {
+  addNudge,
+  deleteTriggerNudges,
+  getTriggerNudges,
+} from "./nudge.service";
 import { validateQuery } from "../middlewares/validate-query";
 import { validateJwt } from "../middlewares/validate-jwt";
 
@@ -23,12 +27,27 @@ const handlePostNudge = async (
 };
 
 const handleGetCampaign = async (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     res.sendFile(join(__dirname, "cdn.js"));
+  } catch (err) {
+    next(err);
+  }
+};
+
+const handleGetTriggerNudges = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { app_id } = req.params;
+    const nudges = await getTriggerNudges(app_id);
+    res.json({ success: true, data: nudges });
+    await deleteTriggerNudges(app_id);
   } catch (err) {
     next(err);
   }
@@ -41,5 +60,6 @@ router.post(
   handlePostNudge
 );
 router.get("/campaign.js", handleGetCampaign);
+router.get("/trigger/:app_id", handleGetTriggerNudges);
 
 export default router;

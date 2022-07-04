@@ -16,4 +16,12 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /modal-(enter|exit)/,
+    },
+    {
+      pattern: /modal-(enter|exit)-(enter|active|done)/,
+    },
+  ],
 };

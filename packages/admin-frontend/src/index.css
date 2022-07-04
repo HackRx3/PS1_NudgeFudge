@@ -4,6 +4,38 @@
 
 @layer base {
   body {
-    @apply bg-white;
+    @apply bg-white text-black;
+  }
+}
+
+@layer utilities {
+  .modal-enter .backdrop {
+    @apply bg-black bg-opacity-0;
+  }
+  .modal-enter-active .backdrop,
+  .modal-enter-done .backdrop {
+    @apply bg-black bg-opacity-40 transition-colors duration-300;
+  }
+  .modal-exit .backdrop {
+    @apply bg-black bg-opacity-40;
+  }
+  .modal-exit-active .backdrop,
+  .modal-exit-done .backdrop {
+    @apply bg-black bg-opacity-0 transition-colors duration-300;
+  }
+
+  .modal-enter > section {
+    @apply transform scale-50 opacity-0;
+  }
+  .modal-enter-active > section,
+  .modal-enter-done > section {
+    @apply scale-100 opacity-100 transition-all duration-300;
+  }
+  .modal-exit > section {
+    @apply transform scale-100 opacity-100;
+  }
+  .modal-exit-active > section,
+  .modal-exit-done > section {
+    @apply scale-50 opacity-0 transition-all duration-300;
   }
 }

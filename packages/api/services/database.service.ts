@@ -43,8 +43,10 @@ export class DatabaseService {
   public getDb = async (collection: string): Promise<MongoDB.Collection> => {
     let db: string = process.env.MONGO_DB ?? "test";
 
-    if (process.env.NODE_ENV === "production")
-      return this.dbClient.db(`prod_${db}`).collection(collection);
-    else return this.dbClient.db(`dev_${db}`).collection(collection);
+    //? INFO: Disabling db biforcation
+    // if (process.env.NODE_ENV === "production")
+    //   return this.dbClient.db(`prod_${db}`).collection(collection);
+    // else
+    return this.dbClient.db(`dev_${db}`).collection(collection);
   };
 }
